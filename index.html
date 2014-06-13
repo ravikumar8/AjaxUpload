@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Ajax Upload</title>
+	<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+	
+	<form action="image.php" method="post" enctype="multipart/form-data" class="uploadForm">
+		<input type="file" name="image" class="image">
+	</form>
+	<div id="preview"></div>
+
+	<script src="assets/js/jquery-1.10.1.min.js"></script>
+	<script src="assets/js/jquery.form.js"></script>
+	<script>
+		jQuery(document).ready(function($){
+			
+			$('.image').on('change', function(){
+
+				$('#preview').html('<img src="assets/img/loader.gif" alt="Uploading...."/>');
+				$('.uploadForm').ajaxForm({ target: '#preview' }).submit();
+			});
+
+		});
+	</script>	
+</body>
+</html>
