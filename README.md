@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ravikumar8/AjaxUpload.svg?branch=master)](https://travis-ci.org/ravikumar8/AjaxUpload)
+
 AjaxUpload
 ==========
 This class can process image files uploaded via AJAX.
