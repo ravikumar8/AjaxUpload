@@ -27,9 +27,7 @@ class Upload	{
 		if( isset( $_POST ) and $_SERVER['REQUEST_METHOD'] == 'POST' )	{
 
 			$name		=	$_FILES[ $this->args['file'] ]['name'];
-			//$type		=	$_FILES[ $this->args['file'] ]['type'];
 			$tmp_name	=	$_FILES[ $this->args['file'] ]['tmp_name'];
-			//$error		=	$_FILES[ $this->args['file'] ]['error'];
 			$size		=	$_FILES[ $this->args['file'] ]['size'];
 
 			if( strlen( $name ) == 0 )	{
@@ -37,7 +35,6 @@ class Upload	{
 				exit;
 			}
 
-			//list( $filename, $ext )	=	explode('.', $name);
 			list( , $ext )	=	explode('.', $name);
 			if( ! in_array( $ext, $this->args['allowed_formats'] ) )	{
 				echo $this->args['errors']['invalid_file_format'];
