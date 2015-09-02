@@ -1,6 +1,8 @@
 <?php
 class Upload	{
 
+	protected $args 	=	array();
+
 	public function __construct( $args )	{
 
 		$this->args 	=	[
@@ -25,9 +27,9 @@ class Upload	{
 		if( isset( $_POST ) and $_SERVER['REQUEST_METHOD'] == 'POST' )	{
 
 			$name		=	$_FILES[ $this->args['file'] ]['name'];
-			$type		=	$_FILES[ $this->args['file'] ]['type'];
+			//$type		=	$_FILES[ $this->args['file'] ]['type'];
 			$tmp_name	=	$_FILES[ $this->args['file'] ]['tmp_name'];
-			$error		=	$_FILES[ $this->args['file'] ]['error'];
+			//$error		=	$_FILES[ $this->args['file'] ]['error'];
 			$size		=	$_FILES[ $this->args['file'] ]['size'];
 
 			if( strlen( $name ) == 0 )	{
@@ -35,7 +37,8 @@ class Upload	{
 				exit;
 			}
 
-			list( $filename, $ext )	=	explode('.', $name);
+			//list( $filename, $ext )	=	explode('.', $name);
+			list( , $ext )	=	explode('.', $name);
 			if( ! in_array( $ext, $this->args['allowed_formats'] ) )	{
 				echo $this->args['errors']['invalid_file_format'];
 				exit;
@@ -53,12 +56,12 @@ class Upload	{
 
 			if( ! move_uploaded_file( $tmp_name, $this->args['upload_path'] . $name ) )	{
 				echo $this->args['errors']['upload_failed'];
-				exit;	
+				exit;
 			}
 
 			echo "<img src='".$this->args['upload_path'] . $name."'  class='preview'>";
 			exit;
 		}
-		
+
 	}
 }
