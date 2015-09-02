@@ -1,0 +1,20 @@
+{
+	"require": {
+		"php" : ">=5.4"
+	}
+    "name": "ravikumar8/ajax-upload",
+    "description": "This class can process image files uploaded via AJAX.",
+    "homepage" : "https://github.com/ravikumar8/AjaxUpload",
+    "license" : "BSD-2-Clause",
+    "authors": [
+        {
+            "name": "Ravi Kumar",
+            "email": "idea.begins.here@gmail.com"
+        }
+    ],
+    "keywords" : [
+		"framework",
+		"component"
+	],
+    "type": "library",
+}
