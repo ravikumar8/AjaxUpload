@@ -24,7 +24,7 @@ class Upload	{
 
 	public function process()	{
 
-		if( isset( $_POST ) and $_SERVER['REQUEST_METHOD'] == 'POST' )	{
+		if( isset( $_POST ) && $_SERVER['REQUEST_METHOD'] == 'POST' )	{
 
 			$name		=	$_FILES[ $this->args['file'] ]['name'];
 			$tmp_name	=	$_FILES[ $this->args['file'] ]['tmp_name'];
@@ -32,33 +32,26 @@ class Upload	{
 
 			if( strlen( $name ) == 0 )	{
 				echo $this->args['errors']['select_file'];
-				exit;
 			}
 
 			list( , $ext )	=	explode('.', $name);
 			if( ! in_array( $ext, $this->args['allowed_formats'] ) )	{
 				echo $this->args['errors']['invalid_file_format'];
-				exit;
 			}
 
 			if( $size > $this->args['allowed_size'] )	{
 				echo $this->args['errors']['invalid_file_size'];
-				exit;
 			}
 
 			if( ! is_dir( $this->args['upload_path'] ) )	{
 				echo $this->args['errors']['path_not_exist'];
-				exit;
 			}
 
 			if( ! move_uploaded_file( $tmp_name, $this->args['upload_path'] . $name ) )	{
 				echo $this->args['errors']['upload_failed'];
-				exit;
 			}
 
 			echo "<img src='".$this->args['upload_path'] . $name."'  class='preview'>";
-			exit;
 		}
-
 	}
 }
