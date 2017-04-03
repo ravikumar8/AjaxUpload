@@ -1,7 +1,7 @@
 <?php
 	include_once 'upload.php';
 
-	$image	=	new Upload(
+	$image = new Upload(
 		array(
 			'file' 			=> 'image'
 		)
