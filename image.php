@@ -3,8 +3,7 @@
 
 	$image	=	new Upload(
 		array(
-			'file' 			=> 'image',
-			'allowed_size'	=>	1024 * 1024 * 1024
+			'file' 			=> 'image'
 		)
 	);
 
