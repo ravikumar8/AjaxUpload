@@ -1,11 +1,11 @@
 <?php
-class Upload	{
+class Upload {
 
-	protected $args 	=	array();
+	protected $args = array();
 
-	public function __construct( $args )	{
+	public function __construct($args) {
 
-		$this->args 	=	[
+		$this->args = [
 			'file'				=>	'file',
 			'upload_path'		=>	'uploads/',
 			'allowed_formats'	=>	['jpg', 'png'],
@@ -20,43 +20,43 @@ class Upload	{
 			]
 		];
 
-		$this->args = array_merge( $this->args, $args );
+		$this->args = array_merge($this->args, $args);
 	}
 
-	public function process()	{
+	public function process() {
 
-		if( isset( $_POST ) && $_SERVER['REQUEST_METHOD'] == 'POST' )	{
+		if (isset($_POST) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 
-			$name		=	$_FILES[ $this->args['file'] ]['name'];
-			$tmp_name	=	$_FILES[ $this->args['file'] ]['tmp_name'];
-			$size		=	$_FILES[ $this->args['file'] ]['size'];
+			$name		= $_FILES[$this->args['file']]['name'];
+			$tmp_name = $_FILES[$this->args['file']]['tmp_name'];
+			$size		= $_FILES[$this->args['file']]['size'];
 
-			if( strlen( $name ) == 0 )	{
+			if (strlen($name) == 0) {
 				die($this->args['errors']['select_file']);
 			}
 
-			if( ! is_dir( $this->args['upload_path'] ) )	{
+			if ( ! is_dir($this->args['upload_path'])) {
 				die($this->args['errors']['path_not_exist']);
 			}
 
 			if (file_exists($this->args['upload_path'].$name)) {
-			    die($this->args['errors']['file_already_exists']);
+				die($this->args['errors']['file_already_exists']);
 			}
 
-			list( , $ext )	=	explode('.', $name);
-			if( ! in_array( $ext, $this->args['allowed_formats'] ) || getimagesize($tmp_name) === false )	{
+			list(, $ext) = explode('.', $name);
+			if ( ! in_array($ext, $this->args['allowed_formats']) || getimagesize($tmp_name) === false) {
 				die($this->args['errors']['invalid_file_format']);
 			}
 
-			if( $size > $this->args['allowed_size'] )	{
+			if ($size > $this->args['allowed_size']) {
 				die($this->args['errors']['invalid_file_size']);
 			}
 
-			if( ! move_uploaded_file( $tmp_name, $this->args['upload_path'] . $name ) )	{
+			if ( ! move_uploaded_file($tmp_name, $this->args['upload_path'].$name)) {
 				die($this->args['errors']['upload_failed']);
 			}
 
-			echo "<img src='".$this->args['upload_path'] . $name."'  class='preview'>";
+			echo "<img src='".$this->args['upload_path'].$name."'  class='preview'>";
 		}
 	}
 }
